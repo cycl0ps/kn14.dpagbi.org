@@ -1,0 +1,35 @@
+------------------------------
+Quick.Cms by OpenSolution.org
+www.opensolution.org
+------------------------------
+
+Requirements here:
+http://opensolution.org/Quick.Cms/docs/?id=en-requirements#1
+
+How to install script:
+http://opensolution.org/Quick.Cms/docs/?id=en-requirements#2
+
+How to log to admin panel:
+http://opensolution.org/Quick.Cms/docs/?id=en-requirements#4
+
+How to use script, modify design and script, tips & tricks etc.:
+http://opensolution.org/Quick.Cms/docs/
+
+License
+------------------
+1. Freeware version of Quick.Cms is based on license Creative Commons Attribution 2.5 license.
+You can change all templates except deleting/hidding link to www.OpenSolution.org named "CMS by Quick.Cms". 
+More information or if You want to remove that link visit page http://opensolution.org/license.html
+
+2. Licenses of plugins (mlbox and tinymce) installed in the script are located in "plugins/" directory.
+
+Backup
+------------------
+Copy "database/" directory occasionally. This directory contains pages data, translations and configuration files.
+Most hosting providers do backup. Contact with Your hosting provider to get more info.
+
+Important links
+------------------
+http://opensolution.org/ - OpenSolution home page
+http://opensolution.org/catalogue/ - Web pages directory based on Quick.Cms and Quick.Cart scripts
+http://opensolution.org/Quick.Cms/forum/ - Quick.Cms support forum

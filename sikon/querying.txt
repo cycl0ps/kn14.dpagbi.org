@@ -1,0 +1,135 @@
+==berita==
+
+INSERT INTO `berita` (`judul_berita`, `isi_berita`, `tanggal_berita`) VALUES
+('System Update [Menu Category]', 'Done updating core system. \r\nAdditional menu category: "Pengurus Pusat". \r\nChange menu category from "Sekretariat" to "Panitia Lokal".', '2013-08-05 13:10:45'),
+('Menu Addition [4 menu Panitia Lokal]', 'Done developing menu: Kelola Acara, Jadwal Konsumsi, Absen Acara, Absen Konsumsi\r\nLocation: Menu Panitia Lokal\r\nAkses Level: Panitia Lokal', '2013-08-06 20:24:11'),
+('Menu Addition [2 menu Pengurus Pusat]', 'Done developing menu: Kelola KPA, Download Data\r\nLocation Menu Pengurus Pusat\r\nAkses Level: Pengurus Pusat', '2013-08-07 16:45:01'),
+('Core Update [Module Detail]', 'Done updating core system. \r\nAdditional module: Download Data, Detail Biodata, Detail Penginapan, Detail Acara, Detail KPA. \r\nChange menu category from "Sekretariat" to "Panitia Lokal"\r\nUpdate "Edit Biodata" functionality', '2013-08-08 21:34:30'),
+('Menu Addition [3 menu Reports]', 'Done developing menu: Data Pembayaran, Data Komisi, Data KPA, Data Absensi\r\nLocation: Menu Reports\r\nAkses Level: Pengurus Pusat, Panitia Lokal', '2013-08-09 15:41:13'),
+('Rekapitulasi Addition [5 Reports]', 'Done developing rekapitulasi: Jumlah Pendaftar menurut Status, Jumlah Pendaftar per Komisi, Jumlah KPA per PD/PLN, Jumlah Kehadiran Peserta per Acara, Jumlah Konsumsi Terdistribusi\r\nLocation: Menu Report - Rekapitulasi\r\nAkses Level: Pengurus Pusat, Panitia Lokal', '2013-08-10 17:30:20');
+
+========
+tabel kpa drop existing first
+
+CREATE TABLE IF NOT EXISTS `kpa` (
+  `id_kpa` int(11) NOT NULL AUTO_INCREMENT,
+  `nama_kpa` varchar(100) NOT NULL,
+  `alamat_kpa` varchar(100) NOT NULL,
+  `negara_kpa` smallint(6) NOT NULL,
+  `propinsi_kpa` smallint(6) NOT NULL,
+  `kabkota_kpa` smallint(6) NOT NULL,
+  `pdn_kpa` smallint(6) NOT NULL,
+  `tlp_kpa` char(20) NOT NULL,
+  `fax_kpa` char(20) NOT NULL,
+  `gembala_grj_kpa` varchar(100) NOT NULL,
+  `nama_ketua_kpa` varchar(100) NOT NULL,
+  PRIMARY KEY (`id_kpa`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+=========
+tabel presensi
+
+CREATE TABLE IF NOT EXISTS `presensi` (
+  `id_presensi` int(11) NOT NULL AUTO_INCREMENT,
+  `id_peserta` varchar(8) NOT NULL,
+  `kode_activity` mediumint(9) NOT NULL,
+  `time_activity` datetime NOT NULL,
+  `operator` varchar(20) NOT NULL,
+  PRIMARY KEY (`id_presensi`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+==========
+tabel activity
+
+CREATE TABLE IF NOT EXISTS `activity` (
+  `id_activity` int(11) NOT NULL AUTO_INCREMENT,
+  `nama_activity` varchar(50) NOT NULL,
+  `deskripsi_activity` text NOT NULL,
+  `group_activity` tinyint(4) NOT NULL,
+  `start_activity` datetime NOT NULL,
+  `flag1` tinyint(4) NOT NULL COMMENT 'absen',
+  `flag2` tinyint(4) NOT NULL COMMENT 'kredensi',
+  `flag3` tinyint(4) NOT NULL COMMENT 'sphere 1, komisi 2',
+  `flag4` tinyint(4) NOT NULL COMMENT 'kode sphere/komisi',
+  PRIMARY KEY (`id_activity`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=55 ;
+
+--
+-- Dumping data for table `activity`
+--
+
+INSERT INTO `activity` (`id_activity`, `nama_activity`, `deskripsi_activity`, `group_activity`, `start_activity`, `flag1`, `flag2`, `flag3`, `flag4`) VALUES
+(1, 'Pembukaan Rakernas IV DPA GBI', 'Pembicara: Pdt. Dwidjo Saputro', 1, '2013-08-26 08:30:00', 0, 0, 0, 0),
+(2, 'Pleno I (Rakernas IV)', '1. Agenda acara Rakernas IV DPA GBI\r\n2. Tatib Sidang Rakernas IV\r\n3. LPJ KPP DPA GBI', 1, '2013-08-26 10:00:00', 0, 0, 0, 0),
+(3, 'Pleno II (Rakernas IV)', '1. LPJ Pengurus Daerah DPA GBI\r\n2. Pandangan Umum', 1, '2013-08-26 13:00:00', 0, 0, 0, 0),
+(4, 'Pleno III (Rakernas IV)', '1. Tata Kerja DPA GBI 2013-2017\r\n2. Laporan Hasil Tim AdHoc Tata Kerja DPA GBI', 1, '2013-08-26 15:30:00', 0, 0, 0, 0),
+(5, 'Pleno IV (Rakernas IV)', '1. Acara dan Kegiatan KN XIV DPA GBI', 1, '2013-08-26 19:00:00', 0, 0, 0, 0),
+(6, 'Penutupan Rakernas IV', '', 1, '2013-08-26 20:00:00', 0, 0, 0, 0),
+(7, 'Pembukaan KN XIV DPA GBI 2013', '', 1, '2013-08-27 09:00:00', 0, 0, 0, 0),
+(8, 'Pleno I (Kongres Nasional)', '1. Pemilihan Majelis Ketua\r\n2. Tatib acara, tatib sidang, dan susunan acara\r\n3. LPJ KPP DPA GBI Periode 2009-2013', 1, '2013-08-27 11:00:00', 1, 0, 0, 0),
+(9, 'Workshop I Sphere A', 'Sphere A: Art/Media/Sport&Entertainment', 1, '2013-08-27 12:30:00', 1, 0, 1, 1),
+(10, 'Workshop I Sphere B', 'Sphere B: Business', 1, '2013-08-27 12:30:00', 1, 0, 1, 2),
+(11, 'Workshop I Sphere C', 'Sphere C: Church', 1, '2013-08-27 12:30:00', 1, 0, 1, 3),
+(12, 'Workshop I Sphere D', 'Sphere D: Development of The Poor', 1, '2013-08-27 12:30:00', 1, 0, 1, 4),
+(13, 'Workshop I Sphere E', 'Sphere E: Education', 1, '2013-08-27 12:30:00', 1, 0, 1, 5),
+(14, 'Workshop I Sphere F', 'Sphere F: Family', 1, '2013-08-27 12:30:00', 1, 0, 1, 6),
+(15, 'Workshop I Sphere G', 'Sphere G: Goverment', 1, '2013-08-27 12:30:00', 1, 0, 1, 7),
+(16, 'Workshop II Anak (ABI)', 'Komisi Anak Bethel Indonesia (ABI)', 1, '2013-08-27 15:00:00', 1, 0, 2, 1),
+(17, 'Workshop II Remaja (RBI)', 'Komisi Remaja Bethel Indonesia (RBI)', 1, '2013-08-27 15:00:00', 1, 0, 2, 2),
+(18, 'Workshop II Pemuda (PBI)', 'Komisi Pemuda Bethel Indonesia (PBI)', 1, '2013-08-27 15:00:00', 1, 0, 2, 3),
+(19, 'Workshop II Dewasa Muda (DMBI)', 'Komisi Dewasa Muda Bethel Indonesia (DMBI)', 1, '2013-08-27 15:00:00', 1, 0, 2, 4),
+(20, 'Performance and Dinner I', '', 1, '2013-08-27 17:00:00', 0, 0, 0, 0),
+(21, 'KKR dan 42nd Birthday Anniversary', '', 1, '2013-08-27 18:30:00', 0, 0, 0, 0),
+(22, 'Seminar I', 'Speakers: Dr. Ir. G. S. Vicky Lumentut', 1, '2013-08-28 08:00:00', 0, 0, 0, 0),
+(23, 'Seminar II', 'Speakers: S.H. Sarundajang', 1, '2013-08-28 10:30:00', 0, 0, 0, 0),
+(24, 'Sidang Komisi I Anak (ABI)', 'ABI - mengacu pada 7 sphere', 1, '2013-08-28 12:30:00', 1, 0, 2, 1),
+(25, 'Sidang Komisi I Remaja (RBI)', 'RBI - mengacu pada 7 sphere', 1, '2013-08-28 12:30:00', 1, 0, 2, 2),
+(26, 'Sidang Komisi I Pemuda (PBI)', 'PBI - mengacu pada 7 sphere', 1, '2013-08-28 12:30:00', 1, 0, 2, 3),
+(27, 'Sidang Komisi I Dewasa Muda (DMBI)', 'DMBI - mengacu pada 7 sphere', 1, '2013-08-28 12:30:00', 1, 0, 2, 4),
+(28, 'Sidang Komisi II Organisasi', 'Organisasi', 1, '2013-08-28 14:30:00', 1, 0, 0, 0),
+(29, 'Sidang Komisi II Program', 'Program', 1, '2013-08-28 14:30:00', 1, 0, 0, 0),
+(30, 'Sidang Komisi II Keuangan', 'Keuangan', 1, '2013-08-28 14:30:00', 1, 0, 0, 0),
+(31, 'Pleno II (Kongres Nasional)', 'Laporan Sidang Komisi dan Tanggapan.\r\n1. ABI\r\n2. RBI\r\n3. PBI\r\n4. DMBI', 1, '2013-08-28 16:00:00', 1, 0, 0, 0),
+(32, 'Performance and Dinner II', '', 1, '2013-08-28 18:30:00', 0, 0, 0, 0),
+(33, 'Pleno III (Kongres Nasional)', 'Laporan Sidang Komisi dan Tanggapan\r\n1. Organisasi\r\n2. Program\r\n3. Keuangan', 1, '2013-08-28 19:30:00', 1, 0, 0, 0),
+(34, 'Seminar Sessi Umum', 'Speaker: Pdt. Dr. Erastus Sabdono', 1, '2013-08-29 08:00:00', 0, 0, 0, 0),
+(35, 'Pleno IV (Kongres Nasional)', '1. Tata Kerja DPA GBI 2013-2017\r\n2. Penentuan Lokasi KN XV tahun 2017', 1, '2013-08-29 10:00:00', 1, 0, 0, 0),
+(36, 'Pleno V (Kongres Nasional)', '1. Pemilihan KPP DPA GBI Periode 2013-2017\r\n2. Pelantikan KPP dan KPD', 1, '2013-08-29 13:00:00', 1, 0, 0, 0),
+(37, 'Ibadah Penutupan', '', 1, '2013-08-29 15:30:00', 0, 0, 0, 0),
+(38, 'Performance and Dinner III', '', 1, '2013-08-29 17:00:00', 0, 0, 0, 0),
+(39, 'Celebration of Transformers', 'Speakers: Pdt. Dr. Erastus Sabdono', 1, '2013-08-29 18:30:00', 0, 0, 0, 0),
+(40, 'Breakfast (Rakernas IV)', '', 2, '2013-08-26 07:00:00', 1, 0, 0, 0),
+(41, 'Lunch (Rakernas IV)', '', 2, '2013-08-26 12:00:00', 1, 0, 0, 0),
+(42, 'Dinner (Rakernas IV)', '', 2, '2013-08-26 18:00:00', 1, 0, 0, 0),
+(43, 'Coffee Break (Rakernas IV)', '', 2, '2013-08-26 15:00:00', 1, 0, 0, 0),
+(44, 'Breakfast Hari 1 (KN XIV)', '', 2, '2013-08-27 07:00:00', 1, 0, 0, 0),
+(45, 'Lunch Hari 1 (KN XIV)', '', 2, '2013-08-27 12:30:00', 1, 0, 0, 0),
+(46, 'Dinner Hari 1 (KN XIV)', '', 2, '2013-08-27 18:00:00', 1, 0, 0, 0),
+(47, 'Breakfast Hari 2 (KN XIV)', '', 2, '2013-08-28 07:00:00', 1, 0, 0, 0),
+(48, 'Lunch Hari 2 (KN XIV)', '', 2, '2013-08-28 12:30:00', 1, 0, 0, 0),
+(49, 'Dinner Hari 2 (KN XIV)', '', 2, '2013-08-28 18:00:00', 1, 0, 0, 0),
+(50, 'Breakfast Hari 3 (KN XIV)', '', 2, '2013-08-29 07:00:00', 1, 0, 0, 0),
+(51, 'Lunch Hari 3 (KN XIV)', '', 2, '2013-08-29 12:30:00', 1, 0, 0, 0),
+(52, 'Dinner Hari 3 (KN XIV)', '', 2, '2013-08-29 18:00:00', 1, 0, 0, 0),
+(53, 'Coffee Break Hari 1 (KN XIV)', '', 2, '2013-08-27 14:30:00', 1, 0, 0, 0),
+(54, 'Coffee Break Hari 2 (KN XIV)', '', 2, '2013-08-28 14:30:00', 1, 0, 0, 0);
+
+//
+CREATE TABLE IF NOT EXISTS `themes` (
+  `id_theme` int(11) NOT NULL AUTO_INCREMENT,
+  `nama_theme` varchar(100) NOT NULL,
+  `path_theme` varchar(50) NOT NULL,
+  `deskripsi_theme` text NOT NULL,
+  `creator_theme` varchar(50) NOT NULL,
+  `status_theme` enum('active','deactive') NOT NULL DEFAULT 'deactive',
+  PRIMARY KEY (`id_theme`)
+) ENGINE=MyISAM  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `themes`
+--
+
+INSERT INTO `themes` (`id_theme`, `nama_theme`, `path_theme`, `deskripsi_theme`, `creator_theme`, `status_theme`) VALUES
+(1, 'original', 'themes/kn14', 'This is original themes', 'Xaverius Najoan', 'active');
+
+

@@ -1,0 +1,21 @@
+command to perform:
+UPDATE biodata SET komisi = 1 WHERE komisi_abi = 1 AND komisi_rbi != 1 AND komisi_pbi != 1 AND komisi_dmbi != 1
+UPDATE biodata SET komisi = 2 WHERE komisi_abi != 1 AND komisi_rbi = 1 AND komisi_pbi != 1 AND komisi_dmbi != 1
+UPDATE biodata SET komisi = 3 WHERE komisi_abi != 1 AND komisi_rbi != 1 AND komisi_pbi = 1 AND komisi_dmbi != 1
+UPDATE biodata SET komisi = 4 WHERE komisi_abi != 1 AND komisi_rbi != 1 AND komisi_pbi != 1 AND komisi_dmbi = 1
+
+UPDATE biodata SET komisi = 2 WHERE komisi_abi = 1 AND komisi_rbi = 1 AND komisi_pbi != 1 AND komisi_dmbi != 1
+UPDATE biodata SET komisi = 3 WHERE komisi_abi = 1 AND komisi_rbi != 1 AND komisi_pbi = 1 AND komisi_dmbi != 1
+UPDATE biodata SET komisi = 4 WHERE komisi_abi = 1 AND komisi_rbi != 1 AND komisi_pbi != 1 AND komisi_dmbi = 1
+UPDATE biodata SET komisi = 3 WHERE komisi_abi != 1 AND komisi_rbi = 1 AND komisi_pbi = 1 AND komisi_dmbi != 1
+UPDATE biodata SET komisi = 2 WHERE komisi_abi != 1 AND komisi_rbi = 1 AND komisi_pbi != 1 AND komisi_dmbi = 1
+UPDATE biodata SET komisi = 3 WHERE komisi_abi != 1 AND komisi_rbi != 1 AND komisi_pbi = 1 AND komisi_dmbi = 1
+UPDATE biodata SET komisi = 3 WHERE komisi_abi = 1 AND komisi_rbi = 1 AND komisi_pbi = 1 AND komisi_dmbi != 1
+UPDATE biodata SET komisi = 4 WHERE komisi_abi = 1 AND komisi_rbi = 1 AND komisi_pbi != 1 AND komisi_dmbi = 1
+UPDATE biodata SET komisi = 1 WHERE komisi_abi = 1 AND komisi_rbi != 1 AND komisi_pbi = 1 AND komisi_dmbi = 1
+UPDATE biodata SET komisi = 4 WHERE komisi_abi != 1 AND komisi_rbi = 1 AND komisi_pbi = 1 AND komisi_dmbi = 1
+UPDATE biodata SET komisi = 1 WHERE komisi_abi = 1 AND komisi_rbi = 1 AND komisi_pbi = 1 AND komisi_dmbi = 1
+
+
+UPDATE pembayaran SET jumlah_bayar = 500000 WHERE jumlah_bayar = 500
+UPDATE pembayaran SET jumlah_bayar = 250000 WHERE jumlah_bayar = 250

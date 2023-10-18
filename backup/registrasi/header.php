@@ -1,0 +1,1 @@
+<img src="header_bg.jpg" width="960" height="140" />
